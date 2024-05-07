@@ -1,0 +1,43 @@
+<launch>
+    <master auto="start"/>
+    <!-- MAP SERVER -->
+    <arg name="map_file" default="$(find navigation_parameter)/map/four_ws_map.yaml"/>
+    <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)">
+        <param name="frame_id" value="map" />
+    </node>
+
+    <node pkg="amcl" type="amcl" name="amcl" output="screen">
+        <remap from="scan" to="front/scan" />
+        <rosparam file="$(find navigation_parameter)/config/amcl/amcl_diff.yaml" command="load" />
+    </node>
+
+    <!-- MOVE BASE -->
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+        <!-- <param name="base_global_planner" value="thetastar_planner/ThetaStarBasic2"/> -->
+        <!-- COST MAP -->
+        <rosparam file="$(find navigation_parameter)/config/costmap/costmap_common.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find navigation_parameter)/config/costmap/costmap_common.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find navigation_parameter)/config/costmap/local_costmap.yaml" command="load" />
+        <rosparam file="$(find navigation_parameter)/config/costmap/global_costmap.yaml" command="load" />
+        
+            <!-- BASE GLOBAL PLANNER -->
+        <!-- <rosparam file="$(find navigation_parameter)/config/planner/global/carrot_planner.yaml" command="load" /> -->
+        <param name="base_global_planner" value="thetastar_planner/ThetastarPlanner"/>
+        <!-- <param name="use_dijkstra" value="false" /> -->
+        <!-- BASE LOCAL PLANNER -->
+        <rosparam file="$(find navigation_parameter)/config/planner/local/trajectory_planner.yaml" command="load" />
+            <!-- MOVE BASE -->
+        <param name="controller_patience" value="15.0" />
+        <param name="controller_frequency" value="10.0" />
+        <param name="max_planning_retries" value="10" />
+        <param name="oscillation_timeout" value="10.0" />
+        <param name="clearing_rotation_allowed" value="true" />
+
+        <!-- remap cmd_vel topic for gazebo -->
+        <remap from="cmd_vel" to="/four_wheel_steering_controller/cmd_vel"/>
+        <remap from="odom" to="/four_wheel_steering_controller/odom"/>
+    </node>
+
+    <node name="rviz" pkg="rviz" type="rviz" required="true" args="-d $(find navigation_parameter)/rviz/navigation.rviz" output="screen" />
+  
+</launch>

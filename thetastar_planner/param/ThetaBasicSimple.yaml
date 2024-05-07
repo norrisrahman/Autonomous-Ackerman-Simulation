@@ -1,0 +1,11 @@
+ThetaBasicSimple:  
+  allow_unknown: false
+  neutral_cost: 1      #cost of moving to an adjacent cell
+  cost_factor: 0.8
+  obstacle_cost_ratio: 1.0
+  cheap_threshold: 100
+  get_grad_path: false
+  default_tolerance: 0.0
+  publish_potential: true
+  publish_scale: 100
+  

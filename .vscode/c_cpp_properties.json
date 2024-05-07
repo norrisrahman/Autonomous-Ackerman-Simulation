@@ -1,0 +1,28 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/norris/fix_simulation/catkin_ws/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/norris/fix_simulation/catkin_ws/src/better_astar_global_planner/include/**",
+        "/home/norris/fix_simulation/catkin_ws/src/carrot_planner/include/**",
+        "/home/norris/fix_simulation/catkin_ws/src/four_ws_navigation/commander/include/**",
+        "/home/norris/fix_simulation/catkin_ws/src/four_ws_navigation/four_wheel_steering_controller/include/**",
+        "/home/norris/fix_simulation/catkin_ws/src/navigation_parameter/include/**",
+        "/home/norris/fix_simulation/catkin_ws/src/thetastar_planner/include/**",
+        "/home/norris/fix_simulation/catkin_ws/src/four_ws_navigation/urdf_geometry_parser/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

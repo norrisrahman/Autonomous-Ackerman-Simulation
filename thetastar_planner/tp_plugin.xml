@@ -1,0 +1,7 @@
+<library path="lib/libthetastar_planner">
+  <class name="thetastar_planner/ThetastarPlanner" type="thetastar_planner::ThetastarPlanner" base_class_type="nav_core::BaseGlobalPlanner">
+    <description>
+      A Thetastar Planner For Trajectory Planning
+    </description>
+  </class>
+</library>
